@@ -39,5 +39,8 @@ void init_expression(py::module & m) {
         // readwrite is not modifiable using references (append) with stl.h
         // create OPAQUE type with stl_bind.h. But needs work to get niceties back.
         .def_readwrite("atoms", & SetExpression::atoms)
+        .def_readwrite("creator_event", & SetExpression::creatorEvent)
+        .def_readwrite("destroyer_event", & SetExpression::destroyerEvent)
+        .def_readwrite("generation", & SetExpression::generation)
         ;
 }
