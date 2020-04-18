@@ -18,11 +18,11 @@ ordering = [[order_function, order_direction]]
 random_seed = 0
 
 step_spec = wm.set.step_spec()
-step_spec.max_events = 100;
-step_spec.max_generations_local = 100;
-step_spec.max_final_atoms = 100000;
-step_spec.max_final_atom_degree = 100000;
-step_spec.max_final_expressions = 100000;
+step_spec.max_events = 100
+step_spec.max_generations_local = 100
+step_spec.max_final_atoms = 100000
+step_spec.max_final_atom_degree = 100000
+step_spec.max_final_expressions = 100000
 
 wms = wm.set(
     rules=[rule], initial_expressions=initial_expressions,
@@ -30,6 +30,7 @@ wms = wm.set(
 wms.replace(step_spec)
 termination_reason = wms.get_termination_reason()
 max_complete_generation = wms.max_complete_generation()
+# print(wms.expressions())
 ```
 
 [Wolfram Models as Set Substitution Systems](#wolfram-models-as-set-substitution-systems) | [Getting Started](#getting-started) | [Symbols and Functions](#symbols-and-functions) | [Physics](#physics) | [Acknowledgements](#acknowledgements)
