@@ -28,6 +28,35 @@ add_custom_command(
   ${CMAKE_BUILD_PYTHONLIBDIR}/$<TARGET_FILE_NAME:_wolfram_model>
   )
 
+### vis package (python-only) ###
+set(_package_name "vis")
+set(_package_python_files
+  __init__.py
+  vis.py
+  fixture.py
+  )
+list(TRANSFORM _package_python_files PREPEND "${_package_name}/")
+# Copy at build time
+file(COPY ${_package_python_files} DESTINATION ${CMAKE_BUILD_PYTHONLIBDIR}/${_package_name})
+install(FILES ${_package_python_files}
+  DESTINATION ${CMAKE_INSTALL_PYTHONLIBDIR}/${_package_name}
+  COMPONENT runtime
+  )
+
+### vis/networkx package (python-only) ###
+set(_package_name "vis/networkx")
+set(_package_python_files
+  __init__.py
+  vis.py
+  )
+list(TRANSFORM _package_python_files PREPEND "${_package_name}/")
+# Copy at build time
+file(COPY ${_package_python_files} DESTINATION ${CMAKE_BUILD_PYTHONLIBDIR}/${_package_name})
+install(FILES ${_package_python_files}
+  DESTINATION ${CMAKE_INSTALL_PYTHONLIBDIR}/${_package_name}
+  COMPONENT runtime
+  )
+
 if(WOLFRAM_MODEL_BUILD_TESTING)
   add_subdirectory(tests)
 endif()
