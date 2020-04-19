@@ -24,11 +24,7 @@ for PYBIN in "${PYBINARIES[@]}"; do
     # Remove when scikit-build includes cmake_target PR:
     # https://github.com/scikit-build/scikit-build/pull/477
     ${PYBIN}/python -m pip uninstall scikit-build -y
-    ${PYBIN}/python -m pip install -r ${script_dir}/../requirements-dev.txt
-
-    if [[ -e /work/requirements-dev.txt ]]; then
-      ${PYBIN}/pip install --upgrade -r /work/requirements-dev.txt
-    fi
+    ${PYBIN}/python -m pip install -r ${script_dir}/../requirements-deploy.txt
 
     ${PYBIN}/python setup.py bdist_wheel --build-type Release -G Ninja -- \
       -DCMAKE_CXX_COMPILER_TARGET:STRING=$(uname -p)-linux-gnu \
