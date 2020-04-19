@@ -33,6 +33,31 @@ max_complete_generation = wms.max_complete_generation()
 # print(wms.expressions())
 ```
 
+Visualize it with networkx
+
+```python
+import wolfram_model.vis as vis
+
+method = "networkx"
+max_gen = wms.max_complete_generation() + 1
+fig, axs = plt.subplots(max_gen)
+for gen in range(max_gen):
+   G = vis.graph_at_generation(wms, input_generation=gen, method=method)
+   num_nodes = G.number_of_nodes()
+   pos = nx.nx_agraph.graphviz_layout(G, prog='dot')
+   nx.draw(G,
+           pos,
+           node_size=100,
+           ax=axs[gen],
+           with_labels=True,
+           node_color=range(num_nodes),
+           cmap=plt.get_cmap('Accent')
+           )
+plt.show()
+```
+
+![nx_draw_graph_gens](https://user-images.githubusercontent.com/3021667/79701297-355cba80-829c-11ea-9fbb-11effbc99a48.png)
+
 [Wolfram Models as Set Substitution Systems](#wolfram-models-as-set-substitution-systems) | [Getting Started](#getting-started) | [Symbols and Functions](#symbols-and-functions) | [Physics](#physics) | [Acknowledgements](#acknowledgements)
 
 # Wolfram Models as Set Substitution Systems
