@@ -12,7 +12,3 @@ set(all_modules_python_sources
   ${all_modules_python_sources}
   ${current_sources_}
   PARENT_SCOPE)
-
-if(SetReplace_BUILD_TESTING)
-  add_subdirectory(tests)
-endif()

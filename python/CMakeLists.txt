@@ -28,3 +28,6 @@ add_custom_command(
   ${CMAKE_BUILD_PYTHONLIBDIR}/$<TARGET_FILE_NAME:_wolfram_model>
   )
 
+if(WOLFRAM_MODEL_BUILD_TESTING)
+  add_subdirectory(tests)
+endif()
