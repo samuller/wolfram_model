@@ -1,5 +1,5 @@
 # It needs the --run-id. This can be obtained from the URL of the azure-pipelines build
-# https://dev.azure.com/phcerdan/SGEXT/_build/results?buildId=181&
+# https://dev.azure.com/phcerdan/wolfram_model/_build/results?buildId=181&
 set -x
 if [ $# -eq 0 ]; then
     echo "No argument provided, provide run-id."
