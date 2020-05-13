@@ -32,7 +32,7 @@ setup(
         '-DWOLFRAM_MODEL_BUILD_TESTING:BOOL=OFF',
         '-DWOLFRAM_MODEL_WRAP_PYTHON:BOOL=ON'
     ],
-    cmake_install_target="install-runtime",
+    cmake_install_target="wolfram_model-install-runtime",
     py_modules=[
         'wolfram_model_version',
     ],

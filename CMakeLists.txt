@@ -115,14 +115,14 @@ configure_package_config_file(
   )
 
 # Add custom target to only install component: runtime (libraries)
-add_custom_target(install-runtime
+add_custom_target(wolfram_model-install-runtime
   ${CMAKE_COMMAND}
   -DCMAKE_INSTALL_COMPONENT=runtime
   -P "${PROJECT_BINARY_DIR}/cmake_install.cmake"
   DEPENDS ${WOLFRAM_MODEL_LIBRARIES}
   )
 message(STATUS "WOLFRAM_MODEL_LIBRARIES: ${WOLFRAM_MODEL_LIBRARIES}")
-add_dependencies(install-runtime ${WOLFRAM_MODEL_LIBRARIES})
+add_dependencies(wolfram_model-install-runtime ${WOLFRAM_MODEL_LIBRARIES})
 if(WOLFRAM_MODEL_WRAP_PYTHON)
-  add_dependencies(install-runtime _wolfram_model)
+  add_dependencies(wolfram_model-install-runtime _wolfram_model)
 endif()
