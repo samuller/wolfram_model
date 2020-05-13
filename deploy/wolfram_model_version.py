@@ -1,4 +1,4 @@
-VERSION = '0.3.0.3'
+VERSION = '0.3.0.4'
 
 def get_versions():
     """Returns versions for the wolfram_model Python package.
