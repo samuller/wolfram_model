@@ -28,8 +28,8 @@ for PYBIN in "${PYBINARIES[@]}"; do
 
     ${PYBIN}/python setup.py bdist_wheel --build-type Release -G Ninja -- \
       -DCMAKE_CXX_COMPILER_TARGET:STRING=$(uname -p)-linux-gnu \
-      -DWOLFRAM_MODEL_BUILD_TESTING:BOOL=OFF \
-      -DWOLFRAM_MODEL_WRAP_PYTHON:BOOL=ON \
+      -DSET_REPLACE_BUILD_TESTING:BOOL=OFF \
+      -DSET_REPLACE_WRAP_PYTHON:BOOL=ON \
       -DPython3_EXECUTABLE:FILEPATH=${Python3_EXECUTABLE} \
       -DPython3_INCLUDE_DIRS:PATH=${Python3_INCLUDE_DIRS} \
     || exit 1

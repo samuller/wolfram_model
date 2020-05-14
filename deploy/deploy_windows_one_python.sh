@@ -20,8 +20,8 @@ python -m pip install -r ${script_dir}/../requirements-deploy.txt
 pushd ${script_dir}
 python setup.py bdist_wheel --build-type Release -G "Visual Studio 16 2019" -- \
   -DCMAKE_CXX_STANDARD=14 \
-  -DWOLFRAM_MODEL_BUILD_TESTING:BOOL=OFF \
-  -DWOLFRAM_MODEL_WRAP_PYTHON:BOOL=ON \
+  -DSET_REPLACE_BUILD_TESTING:BOOL=OFF \
+  -DSET_REPLACE_WRAP_PYTHON:BOOL=ON \
   || exit 1
   # ${PYBIN}/python setup.py clean
 popd

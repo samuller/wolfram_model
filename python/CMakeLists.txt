@@ -57,6 +57,6 @@ install(FILES ${_package_python_files}
   COMPONENT runtime
   )
 
-if(WOLFRAM_MODEL_BUILD_TESTING)
+if(SET_REPLACE_BUILD_TESTING)
   add_subdirectory(tests)
 endif()

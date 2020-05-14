@@ -29,10 +29,10 @@ setup(
     package_dir={'wolfram_model': 'wolfram_model'},
     cmake_source_dir='../',
     cmake_args=[
-        '-DWOLFRAM_MODEL_BUILD_TESTING:BOOL=OFF',
-        '-DWOLFRAM_MODEL_WRAP_PYTHON:BOOL=ON'
+        '-DSET_REPLACE_BUILD_TESTING:BOOL=OFF',
+        '-DSET_REPLACE_WRAP_PYTHON:BOOL=ON'
     ],
-    cmake_install_target="wolfram_model-install-runtime",
+    cmake_install_target="set-replace-install-runtime",
     py_modules=[
         'wolfram_model_version',
     ],
