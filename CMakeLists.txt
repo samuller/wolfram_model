@@ -73,8 +73,30 @@ export( TARGETS SetReplace
 
 
 if(SET_REPLACE_BUILD_TESTING)
-    enable_testing()
-    add_subdirectory(libSetReplace/test)
+  enable_testing()
+  set(INSTALL_GTEST OFF)
+  set(CMAKE_POLICY_DEFAULT_CMP0077 NEW) # Propagate INSTALL_GTEST=OFF to subproject
+  set(GTEST_LIBRARIES gtest gtest_main)
+  include(GoogleTest)
+  #############################################################################
+  # Fetch GTest
+  include(FetchContent)
+
+  FetchContent_Declare(
+    googletest
+    GIT_REPOSITORY https://github.com/google/googletest.git
+    GIT_TAG v1.8.x
+  )
+
+  set(CMAKE_POLICY_DEFAULT_CMP0048 NEW) # google test raises warning about it
+  FetchContent_GetProperties(googletest)
+  if(NOT googletest_POPULATED)
+    FetchContent_Populate(googletest)
+    add_subdirectory(${googletest_SOURCE_DIR} ${googletest_BINARY_DIR})
+  endif()
+  #############################################################################
+
+  add_subdirectory(libSetReplace/test)
 endif()
 
 if(SET_REPLACE_WRAP_PYTHON)
