@@ -2013,6 +2013,39 @@ A slightly different version of this system was first introduced in *Stephen Wol
 
 You can find many more details about our physics results in *Stephen Wolfram*'s [Technical Introduction](https://www.wolframphysics.org/technical-introduction/), and *Jonathan Gorard*'s papers on [Relativity](https://www.wolframcloud.com/obj/wolframphysics/Documents/some-relativistic-and-gravitational-properties-of-the-wolfram-model.pdf) and [Quantum Mechanics](https://www.wolframcloud.com/obj/wolframphysics/Documents/some-quantum-mechanical-properties-of-the-wolfram-model.pdf). And there is much more on [wolframphysics.org](https://www.wolframphysics.org).
 
+## Compile C++ library with CMake
+
+The `SetReplace` library can be used outside of Mathematica. It provides a CMake project for easy interaction with the c++ ecosystem.
+To compile the core library using CMake:
+```bash
+mkdir build; cd build;
+cmake ../SetReplace-source-dir -DSET_REPLACE_BUILD_TESTING:BOOL=OFF -DSET_REPLACE_WITH_MATHEMATICA:BOOL=OFF
+cmake --build .
+```
+
+To generate the target `SetReplaceMathematica`, that provides an interface for using SetReplace in Mathematica,
+use the variable `Mathematica_ROOT` to point to the root directory of the wolfram engine.
+This directory might contain a `.CreationID` file. i.e `Mathematica_ROOT:FILEPATH=/usr/local/Wolfram/WolframEngine/12.0`
+
+
+```bash
+cmake ../SetReplace-source-dir -DSET_REPLACE_WITH_MATHEMATICA:BOOL=ON -DMathematica_ROOT=/path/to/WolframEngine/X.Y
+cmake --build .
+```
+
+If a third party project wants to use `SetReplace`, it is enough to write in their `CMakeLists.txt`:
+```
+project(foo)
+add_library(foo ...)
+
+find_package(SetReplace)
+target_link_libraries(foo SetReplace::SetReplace)
+#or target_link_libraries(foo SetReplace::SetReplaceMathematica)
+```
+and provide to their CMake project the CMake variable: `SetReplace_DIR` pointing to the file `SetReplaceConfig.cmake`.
+This file can be found in the build directory of SetReplace, or in the `$CMAKE_INSTALL_PREFIX/lib/cmake/SetReplace`
+if the project was installed.
+
 # Acknowledgements
 
 In additional to commit authors and reviewers, *Stephen Wolfram* has contributed to the API design of most functions, and *Jeremy Davis* has contributed to the visual style of [`WolframModelPlot`](#wolframmodelplot), [`RulePlot`](#ruleplot-of-wolframmodel) and [`"CausalGraph"`](#causal-graphs).
